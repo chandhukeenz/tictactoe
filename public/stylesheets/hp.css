@@ -1,5 +1,5 @@
 body{
-	background:url(https://i.pinimg.com/originals/9f/32/19/9f3219ac525fd8a256c1682b787c4b4d.jpg);
+	background:url(https://wallpaperplay.com/walls/full/4/6/3/43758.jpg);
 background-size:cover;
 background-position:center;
 font-family:Lato;
@@ -7,7 +7,10 @@ font-family:Lato;
 }
 .content{
 	text-align:center;
-	padding-top:10%;
+	padding-top:8%;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+		         0px 8px 13px rgba(0,0,0,0.1),
+		         0px 18px 23px rgba(0,0,0,0.1);
 	}
 html{
 	height:100%;
