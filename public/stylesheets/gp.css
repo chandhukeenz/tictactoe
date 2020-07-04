@@ -1,3 +1,68 @@
 body{
-	background-color:orange;
+	background:url(https://wallpaperplay.com/walls/full/4/6/3/43758.jpg);
+    background-size:cover;
+    background-position:center;
+    font-family:Lato;
+    color:white;
+}
+html{
+	height:100%;
+}
+*{
+	margin:0;
+	padding:0;
+}
+h1{
+	font-weight:700;
+	font-size: 3em;
+	margin:50px;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+		         0px 8px 13px rgba(0,0,0,0.1),
+		         0px 18px 23px rgba(0,0,0,0.1);
+}
+canvas{
+	border: 1px solid #d9d9d4;
+	background-color: #272726;
+	text-align:center;
+	border-radius:15%;	
+}
+#game{
+	position:relative;
+	width:640px;
+	height:320px;
+	margin:0 auto;
+}
+#tic{
+	position:relative;
+	margin: 0 auto;
+	height: 317px;
+	width:317px;
+	display: inline-block;
+	float:left;
+}
+#playerdetails{
+	position:relative;
+	text-align:left;
+	padding-top:13%;
+	height: 317px;
+	width:200px;
+	display: inline-block;
+	float:right;	
+}
+ul{
+	margin:15px;
+}
+.player{
+	background-color: Transparent;
+	font-weight:500;
+	font-size: 36px;
+	border: none;
+	color:white;
+	 outline:none;
+}
+.player:hover{
+	background-color: rgba(220, 220, 214,0.5);
+}
+canvas:hover{
+	background-color:#0e0e0c;
 }
