@@ -1,4 +1,23 @@
+body{
+	background:url(https://i.pinimg.com/originals/9f/32/19/9f3219ac525fd8a256c1682b787c4b4d.jpg);
+background-size:cover;
+background-position:center;
+font-family:Lato;
+	color:white;
+}
 .content{
 	text-align:center;
 	padding-top:10%;
 	}
+html{
+	height:100%;
+}
+h1{
+	font-weight:700;
+	font-size: 5em;
+}
+hr{
+	width:400px;
+	border-top: 1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
