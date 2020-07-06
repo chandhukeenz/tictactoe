@@ -1,5 +1,5 @@
 body{
-	background:url(https://wallpaperplay.com/walls/full/4/6/3/43758.jpg);
+	background:url(https://wallpaperset.com/w/full/8/7/a/25571.jpg);
     background-size:cover;
     background-position:center;
     font-family:Lato;
@@ -21,14 +21,15 @@ h1{
 		         0px 18px 23px rgba(0,0,0,0.1);
 }
 canvas{
+	display:block;
+	float:left;
 	border: 1px solid #d9d9d4;
 	background-color: #272726;
 	text-align:center;
-	border-radius:15%;	
 }
 #game{
 	position:relative;
-	width:640px;
+	width:740px;
 	height:320px;
 	margin:0 auto;
 }
@@ -38,17 +39,27 @@ canvas{
 	height: 317px;
 	width:317px;
 	display: inline-block;
-	float:left;
+	float:center;
 }
 #playerdetails{
 	position:relative;
 	text-align:left;
 	padding-top:13%;
 	height: 317px;
-	width:200px;
+	width:150px;
 	display: inline-block;
 	float:right;	
 }
+#algorithms{
+	position:relative;
+	text-align:left;
+	padding-top:10%;
+	height: 317px;
+	width:250px;
+	display: inline-block;
+	float:left;	
+}
+
 ul{
 	margin:15px;
 }
