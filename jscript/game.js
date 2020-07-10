@@ -12,17 +12,22 @@ window.onload= function(){
 	var result={};	
 	filled = new Array();
 	symbol = new Array();
+	
+	//all winning positions
 	winner=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+	
+	//initialising all positions as blank
 	for(var i=0;i<9;i++){
 		filled[i]=false;
 		symbol[i]='';
 	}
+	
+	//listens for click
 	document.getElementById("tic").addEventListener("click",function(e){
 		boxClick(e.target.id);
 	});
 	
 	function drawX(){
-		box.style.backgroundcolor="#fb5181";
 		ctx.beginPath();
 		ctx.moveTo(15,15);
 		ctx.lineTo(85,85);
@@ -36,7 +41,6 @@ window.onload= function(){
 		symbol[num-1] = human;	
 	}
 	function drawO(next){
-		box.style.backgroundcolor="#93f273";
 		ctx.beginPath();
 	    ctx.arc(50,50,35,0,2*Math.PI);
 		ctx.lineWidth=20;
@@ -56,41 +60,26 @@ window.onload= function(){
 	function boxClick(numId){
 		box= document.getElementById(numId);
 		ctx = box.getContext("2d");
-		switch(numId){
-			case "canvas1": num =1;
-				            break;
-			case "canvas2": num =2;
-				            break;
-			case "canvas3": num =3;
-				            break;
-			case "canvas4": num =4;
-				            break;
-			case "canvas5": num =5;
-				            break;
-			case "canvas6": num =6;
-				            break;
-			case "canvas7": num =7;
-				            break;
-			case "canvas8": num =8;
-				            break;
-			case "canvas9": num =9;
-				            break;
-		}
+		
+		//get the box num from the id and store in num
+		num = numId.slice(-1);
+		
 		if(filled[num-1]=== false){
 			if(gameover===false){
 				if(turn%2 !==0){
 					drawX();
-					turn++;
 					filled[num-1]=true;
-					
-					if(winnerCheck(symbol,symbol[num-1])===true){
-						document.getElementById("result").innerText = "player "+symbol[num-1]+" won!";
-						gameover=true;
+					if(turn>=5){
+						if(winnerCheck(symbol,symbol[num-1])===true){
+							document.getElementById("result").innerText = "player "+symbol[num-1]+" won!";
+						    gameover=true;
+					    }
 					}
 					if(turn>9 && gameover!==true){
 						document.getElementById("result").innerText = "DRAW";
 						return;
 					}
+					turn++;
 					if(turn%2==0){
 						playAI();
 					}
@@ -104,5 +93,97 @@ window.onload= function(){
 			alert("this box already filled");
 		}
 	}
+	function emptyBoxes(newSymbol){
+		var j =0;
+		var empty =[];
+		for (var i=0;i<newSymbol.length;i++){
+			if(newSymbol[i]!=='X' && newSymbol[i]!=='O'){
+				empty[j]=i;
+				j++
+			}
+		}
+		return empty;
+	}
+	function playAI(){
+		var nextMove= minimax(symbol,ai);
+		var nextId = "canvas"+(nextMove.id +1);
+		box = document.getElementById(nextId);
+		ctx=box.getContext("2d");
+		if(gameover===false){
+			if(turn%2===0){
+				drawO(nextMove.id);
+				filled[nextMove.id]=true;
+				if(turn>=5){
+					if(winnerCheck(symbol,symbol[nextMove.id])===true){
+						document.getElementById("result").innerText="Player "+symbol[nextMove.id]+" won";
+					    gameover=true;
+					}	
+				}
+				turn++;
+				if(turn>9 && gameover!==true){
+						document.getElementById("result").innerText = "DRAW";
+						return;
+				}
+			}
+		}
+	}
+	function minimax(newSymbol,player){
+		var empty =[];
+		empty= emptyBoxes(newSymbol);
+		if(winnerCheck(newSymbol,human)){
+			return {score:-10};	
+		}
+		else if(winnerCheck(newSymbol,ai)){
+			return {score:10};
+		}
+		else if(empty.length===0){
+			if(winnerCheck(newSymbol,human)){
+			return {score:-10};	
+		}
+		else if(winnerCheck(newSymbol,ai)){
+			return {score:10};
+		}
+			return {score:0};
+		}
+		
+		var posMoves =[];
+		for(var i=0;i<empty.length;i++){
+			var curMove={};
+			curMove.id=empty[i];
+			newSymbol[empty[i]]=player;
+			if(player===ai){
+				result = minimax(newSymbol,human);
+				curMove.score = result.score;
+			}
+			else{
+				result = minimax(newSymbol,ai);
+				curMove.score = result.score; 
+			}
+			newSymbol[empty[i]]='';
+			posMoves.push(curMove);	
+		}
+		var bestMove;
+		if(player===ai){
+			var highestScore =-1000;
+			for(var j=0;j<posMoves.length;j++){
+				if(posMoves[j].score > highestScore){
+					highestScore = posMoves[j].score;
+					bestMove = j;
+				}
+			}
+		}
+		else{
+			var lowestScore = 1000;
+			for(var j=0;j<posMoves.length;j++){
+				if(posMoves[j].score<lowestScore){
+					lowestScore=posMoves[j].score;
+					bestMove=j;
+				}
+			}
+		}
+		return posMoves[bestMove];
+	}
 	
-}
+	
+	
+};
