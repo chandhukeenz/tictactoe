@@ -73,16 +73,17 @@ window.onload= function(){
 	}
 	function boxClick(numId){
 		//alert(level +" inside boxclick");
-		
+		var play = Number(sessionStorage.getItem("play"));
 		box= document.getElementById(numId);
 		ctx = box.getContext("2d");
-		
+		 
 		//get the box num from the id and store in num
 		num = numId.slice(-1);
 		
 		if(filled[num-1]=== false){
 			if(gameover===false){
 				if(turn%2 !==0){
+					turn++;
 					drawX();
 					filled[num-1]=true;
 					if(turn>=5){
@@ -95,10 +96,26 @@ window.onload= function(){
 						document.getElementById("result").innerText = "DRAW";
 						return;
 					}
-					turn++;
-					if(turn%2==0){
+					
+					if(turn%2==0 && play==0){
 						playAI();
 					}
+					
+				}
+				else if(turn%2==0 && play==1){
+					turn++;
+					drawO(num-1);
+					filled[num-1]=true;
+					if(turn>=5){
+						if(winnerCheck(symbol,symbol[num-1])===true){
+							document.getElementById("result").innerText = "player "+symbol[num-1]+" won!";
+						    gameover=true;
+					    }
+					}
+					if(turn>9 && gameover!==true){
+						document.getElementById("result").innerText = "DRAW";
+						return;
+					}	
 				}
 			}
 			else{
@@ -128,6 +145,7 @@ window.onload= function(){
 		ctx=box.getContext("2d");
 		if(gameover===false){
 			if(turn%2===0){
+				turn++;
 				drawO(nextMove.id);
 				filled[nextMove.id]=true;
 				if(turn>=5){
@@ -136,7 +154,6 @@ window.onload= function(){
 					    gameover=true;
 					}	
 				}
-				turn++;
 				if(turn>9 && gameover!==true){
 						document.getElementById("result").innerText = "DRAW";
 						return;
