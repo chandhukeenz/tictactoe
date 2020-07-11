@@ -1,8 +1,6 @@
 window.onload= function(){
-	var modeButtons = document.querySelectorAll(".mode");
-	var playwithButtons = document.querySelectorAll(".playwith");
-	var difficulty;
-	var level;
+	var difficulty=[20,10,5,0];
+	//var level=3;
 	var num;
 	var box;
 	var ctx;
@@ -16,32 +14,15 @@ window.onload= function(){
 	var result={};	
 	filled = new Array();
 	symbol = new Array();
-	
-	for(var i=0;i<modeButtons.length;i++){
-		if(modeButtons){
-	modeButtons[i].addEventListener("click",function(){
-    modeButtons[0].classList.remove("active");
-    modeButtons[1].classList.remove("active");
-	modeButtons[2].classList.remove("active");
-	modeButtons[3].classList.remove("active");
-    this.classList.add("active")
-    this.textContent===" EARTH" ? level=1:this.textContent===" ISS" ? level=2:this.textContent===" MOON"?level=3:level=4;
-    //reset();
-	})
-		}
-	
-    }
-	
-	for(var i=0;i<playwithButtons.length;i++){
-	playwithButtons[i].addEventListener("click",function(){
-    playwithButtons[0].classList.remove("active");
-    playwithButtons[1].classList.remove("active");
-	playwithButtons[2].classList.remove("active");
-    this.classList.add("active")
-    //this.textContent==="Easy" ? nosquares=3: nosquares=6;
-    //reset();
-	})
-    }
+
+	/*function findlevel(){
+		var level;
+		var y = document.querySelector(".mode.active");
+		x=y.textContent;
+		alert(x);
+		x===" EARTH" ? level=0:x===" ISS" ? level=1:x===" MOON"?level=2:level=3;
+	    return level;
+	}*/
 	
 	
 	
@@ -55,8 +36,9 @@ window.onload= function(){
 	}
 	
 	//listens for click
+	
 	document.getElementById("tic").addEventListener("click",function(e){
-		boxClick(e.target.id);
+		boxClick(e.target.id,);
 	});
 	
 	function drawX(){
@@ -90,6 +72,8 @@ window.onload= function(){
 		return false;
 	}
 	function boxClick(numId){
+		//alert(level +" inside boxclick");
+		
 		box= document.getElementById(numId);
 		ctx = box.getContext("2d");
 		
@@ -137,6 +121,7 @@ window.onload= function(){
 		return empty;
 	}
 	function playAI(){
+		//alert("inside playai");
 		var nextMove= minimax(symbol,ai);
 		var nextId = "canvas"+(nextMove.id +1);
 		box = document.getElementById(nextId);
@@ -183,13 +168,18 @@ window.onload= function(){
 			var curMove={};
 			curMove.id=empty[i];
 			newSymbol[empty[i]]=player;
+			//level=findlevel();
+			//alert(level +"inside minimax");
+			var level = Number(sessionStorage.getItem("level"));
+			//alert(level);
+			//alert(typeof(level));
 			if(player===ai){
 				result = minimax(newSymbol,human);
-				curMove.score = result.score;
+				curMove.score =result.score+ Math.random()*(2* Number(difficulty[level])) +(-1* Number(difficulty[level]));
 			}
 			else{
 				result = minimax(newSymbol,ai);
-				curMove.score = result.score; 
+				curMove.score = result.score+ Math.random()*(2* Number(difficulty[level])) +(-1* Number(difficulty[level]));
 			}
 			newSymbol[empty[i]]='';
 			posMoves.push(curMove);	
@@ -197,6 +187,7 @@ window.onload= function(){
 		var bestMove;
 		if(player===ai){
 			var highestScore =-1000;
+			//alert(posMoves);
 			for(var j=0;j<posMoves.length;j++){
 				if(posMoves[j].score > highestScore){
 					highestScore = posMoves[j].score;
