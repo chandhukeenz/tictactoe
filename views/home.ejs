@@ -5,8 +5,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/stylesheets/hp.css">
 		<script src="https://kit.fontawesome.com/1c38efe45e.js" crossorigin="anonymous"></script>
-		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 	</head>
 <body>
 <div class="container-fluid">
@@ -18,17 +17,18 @@
  				<hr>
  				<p>
 					<h4>CHOOSE TARGET!</h4>
-				    <button class="btn btn-default" type="button"><i class="fas fa-globe-africa"></i> EARTH</button>
-				    <button class="btn btn-default" type="button"><i class="fas fa-satellite"></i> ISS</button>
-				    <button class="btn btn-default" type="button"><i class="fas fa-moon"></i> MOON</button>
-				    <button class="btn btn-default" type="button"><i class="fas fa-globe-asia"></i> MARS</button>
+				    <button class="btn btn-default mode" type="button" value="1"><i class="fas fa-globe-africa"></i> EARTH</button>
+				    <button class="btn btn-default mode" type="button" value="2"><i class="fas fa-satellite"></i> ISS</button>
+				    <button class="btn btn-default mode" type="button" value="3"><i class="fas fa-moon"></i> MOON</button>
+				    <button class="btn btn-default mode active" type="button" value="4"><i class="fas fa-globe-asia"></i> MARS</button>
 				</p>
 				<hr>
-				<p>
+				<p> <div>
 					<h4>CHOOSE WHO DO YOU WANT TO PLAY WITH!</h4>
-			        <button class="btn btn-default" type="button"><i class="fas fa-robot"></i> AN AI!</button>
-			        <button class="btn btn-default" type="button"><i class="fas fa-user-astronaut"></i> YOUR CREW MEMBERS!</button>
-			        <button class="btn btn-default" type="button"><i class="fab fa-reddit-alien"></i> ALIENS!</button>
+			        <button class="btn btn-default playwith active" type="button"><i class="fas fa-robot"></i> AN AI!</button>
+			        <button class="btn btn-default playwith" type="button"><i class="fas fa-user-astronaut"></i> YOUR CREW MEMBERS!</button>
+			        <button class="btn btn-default playwith" type="button"><i class="fab fa-reddit-alien"></i> ALIENS!</button>
+				</div>
 				</p>            
 		        <hr>
 				<a class="btn btn-default" href="/gameboard" role="button"><i class="fas fa-rocket"></i> START GAME !</a>
@@ -38,5 +38,6 @@
  </div>
  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/game.js"></script>
   </body>
 </html>

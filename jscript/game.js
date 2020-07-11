@@ -1,4 +1,8 @@
 window.onload= function(){
+	var modeButtons = document.querySelectorAll(".mode");
+	var playwithButtons = document.querySelectorAll(".playwith");
+	var difficulty;
+	var level;
 	var num;
 	var box;
 	var ctx;
@@ -12,6 +16,34 @@ window.onload= function(){
 	var result={};	
 	filled = new Array();
 	symbol = new Array();
+	
+	for(var i=0;i<modeButtons.length;i++){
+		if(modeButtons){
+	modeButtons[i].addEventListener("click",function(){
+    modeButtons[0].classList.remove("active");
+    modeButtons[1].classList.remove("active");
+	modeButtons[2].classList.remove("active");
+	modeButtons[3].classList.remove("active");
+    this.classList.add("active")
+    this.textContent===" EARTH" ? level=1:this.textContent===" ISS" ? level=2:this.textContent===" MOON"?level=3:level=4;
+    //reset();
+	})
+		}
+	
+    }
+	
+	for(var i=0;i<playwithButtons.length;i++){
+	playwithButtons[i].addEventListener("click",function(){
+    playwithButtons[0].classList.remove("active");
+    playwithButtons[1].classList.remove("active");
+	playwithButtons[2].classList.remove("active");
+    this.classList.add("active")
+    //this.textContent==="Easy" ? nosquares=3: nosquares=6;
+    //reset();
+	})
+    }
+	
+	
 	
 	//all winning positions
 	winner=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
@@ -97,7 +129,7 @@ window.onload= function(){
 		var j =0;
 		var empty =[];
 		for (var i=0;i<newSymbol.length;i++){
-			if(newSymbol[i]!=='X' && newSymbol[i]!=='O'){
+			if(newSymbol[i]==''){
 				empty[j]=i;
 				j++
 			}
