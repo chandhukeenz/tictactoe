@@ -1,5 +1,5 @@
 window.onload= function(){
-	var difficulty=[20,10,5,0];
+	var difficulty=[20,8,4,0];
 	//var level=3;
 	var num;
 	var box;
@@ -14,17 +14,7 @@ window.onload= function(){
 	var result={};	
 	filled = new Array();
 	symbol = new Array();
-
-	/*function findlevel(){
-		var level;
-		var y = document.querySelector(".mode.active");
-		x=y.textContent;
-		alert(x);
-		x===" EARTH" ? level=0:x===" ISS" ? level=1:x===" MOON"?level=2:level=3;
-	    return level;
-	}*/
-	
-	
+	var resetButton = document.querySelector(".reset");
 	
 	//all winning positions
 	winner=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
@@ -224,6 +214,13 @@ window.onload= function(){
 		return posMoves[bestMove];
 	}
 	
+	resetButton.addEventListener("click",function(){
+    reset();
+    })
+	 
+	function reset(){
+		document.location.reload();
+	}
 	
 	
 };

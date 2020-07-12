@@ -63,7 +63,7 @@ canvas{
 ul{
 	margin:15px;
 }
-.player{
+.btn{
 	background-color: Transparent;
 	font-weight:500;
 	font-size: 36px;
@@ -71,7 +71,13 @@ ul{
 	color:white;
 	 outline:none;
 }
-.player:hover{
+#bottom{
+	padding-left:20%;
+	text-align:right;
+	background-color: Transparent;
+}
+
+.btn:hover{
 	background-color: rgba(220, 220, 214,0.5);
 }
 canvas:hover{
