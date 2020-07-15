@@ -29,19 +29,27 @@ canvas{
 }
 #game{
 	position:relative;
-	width:740px;
-	height:320px;
+	width:840px;
+	height:520px;
 	margin:0 auto;
 }
-#tic{
+#tic3{
+	position:relative;
+	margin: 0 auto;
+	height:409px;
+	width:409px;
+	display: inline-block;
+	float:left;
+}
+#tic2{
 	position:relative;
 	margin: 0 auto;
 	height: 309px;
 	width:309px;
 	display: inline-block;
-	float:center;
+	float:left;
 }
-#playerdetails{
+#instruction2,#instruction3{
 	position:relative;
 	text-align:left;
 	padding-top:13%;
@@ -50,15 +58,7 @@ canvas{
 	display: inline-block;
 	float:right;	
 }
-#algorithms{
-	position:relative;
-	text-align:left;
-	padding-top:10%;
-	height: 317px;
-	width:250px;
-	display: inline-block;
-	float:left;	
-}
+
 
 ul{
 	margin:15px;

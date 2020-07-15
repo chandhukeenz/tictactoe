@@ -1,48 +1,25 @@
-//window.onload = function(){
-	
-    var resetButton = document.querySelector(".reset");
-
-	/*sessionStorage.setItem("player", 1);
-	sessionStorage.setItem("algo", 0);
-	for(var i=0;i<playerButtons.length;i++){
-	playerButtons[i].addEventListener("click",function(){
-	var player;
-    playerButtons[0].classList.remove("active");
-    playerButtons[1].classList.remove("active");
-	//reset();
-    this.classList.add("active")
-		x=this.textContent;
-		x==="AI" ? player=0:player=1;
-		//sessionStorage.setItem("playername",x);
-		sessionStorage.setItem("player", player);
-		//location.reload("/minimax.js");
-	    //ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-		//setup();
-	//findlevel(this.textContent);
-	})
+    var two=document.querySelector("#tic2");	
+    var three=document.querySelector("#tic3");
+    var instwo=document.querySelector("#instruction2");
+    var insthree=document.querySelector("#instruction3");
+    var board = Number(sessionStorage.getItem("board"));
+    if(board==0){
+		two.style.display="block";
+        instwo.style.display="block";
+        three.style.display="none";
+        insthree.style.display="none";
 		
+	}else if(board==1){
+		two.style.display="none";
+        instwo.style.display="none";
+        three.style.display="block";
+        insthree.style.display="block";
 	}
-	for(var i=0;i<algoButtons.length;i++){
-	algoButtons[i].addEventListener("click",function(){
-	var algo;
-    algoButtons[0].classList.remove("active");
-    algoButtons[1].classList.remove("active");
-	algoButtons[2].classList.remove("active");
-	//reset();
-    this.classList.add("active")
-	y=this.textContent;
-	y==="MINIMAX" ? algo=0:y==="NEGAMAX" ? algo=1:algo=2;	
-    sessionStorage.setItem("algo", algo);
-		//location.reload("/minimax.js");
-	//setup();
-	})
-    }
-	*/
+    
+    var resetButton = document.querySelector(".reset");
 	resetButton.addEventListener("click",function(){
     reset();
     })
     function reset(){
 		document.location.reload();
 	}
-	
-//}

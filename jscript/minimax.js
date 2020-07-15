@@ -17,6 +17,7 @@ window.onload= function(){
 	winner=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 	var firstplayer = Number(sessionStorage.getItem("player"));
 	var algo = Number(sessionStorage.getItem("algo"));
+	var play = Number(sessionStorage.getItem("play"));
 	//alert(firstplayer);
 	//alert(algo);	
 		//initialising all positions as blank
@@ -24,16 +25,15 @@ window.onload= function(){
 		filled[i]=false;
 		symbol[i]='';
 	}
-	if(firstplayer==0){
+	if(firstplayer==0 && play==0){
 		playAI();
 	}
-
+alert(play);
 	//listens for click
 	
-	document.getElementById("tic").addEventListener("click",function(e){
-		//alert(turn);
-		//alert(firstplayer);
+	document.getElementById("tic2").addEventListener("click",function(e){
 			boxClick(e.target.id);
+		//alert("inside event");
 		
 	});
 	
@@ -68,8 +68,8 @@ window.onload= function(){
 		return false;
 	}
 	function boxClick(numId){
-		//alert(level +" inside boxclick");
-		var play = Number(sessionStorage.getItem("play"));
+	   //alert(play +" inside boxclick");
+		
 		box= document.getElementById(numId);
 		ctx = box.getContext("2d");
 		 
@@ -78,7 +78,10 @@ window.onload= function(){
 		
 		if(filled[num-1]=== false){
 			if(gameover===false){
-				if((firstplayer==0 && turn%2==0)||(firstplayer==1 && turn%2!==0)){
+				if((firstplayer===0 && turn%2==0 && play===0)||(firstplayer===1 && turn%2!==0 && play===0)||(play===1 && turn%2!==0)){
+					//alert(firstplayer);
+					//alert(turn);
+					//alert(play);
 					turn++;
 					drawX();
 					filled[num-1]=true;
@@ -93,7 +96,7 @@ window.onload= function(){
 						return;
 					}
 					
-					if((firstplayer==0 && turn%2!==0)||(firstplayer==1 && turn%2==0) && play==0){
+					if(((firstplayer==0 && turn%2!==0)||(firstplayer==1 && turn%2==0)) && play==0){
 						playAI();
 					}
 					

@@ -81,7 +81,6 @@ window.onload=function(){
 	var board=0;
     boardButtons[0].classList.remove("active");
     boardButtons[1].classList.remove("active");
-	boardButtons[2].classList.remove("active");
     this.classList.add("active")
 	y=this.textContent;
 	y==="2 PLAYERS" ? board=0:board=1;	
