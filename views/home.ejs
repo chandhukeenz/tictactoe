@@ -15,14 +15,6 @@
  				<h1>TIC TAC TOE</h1>
  				<h3>Time To Show The Power Of Humans!</h3>
  				<hr>
- 				<p>
-					<h4>CHOOSE TARGET!</h4>
-				    <button class="btn btn-default mode" type="button" value="1"><i class="fas fa-globe-africa"></i> EARTH</button>
-				    <button class="btn btn-default mode" type="button" value="2"><i class="fas fa-satellite"></i> ISS</button>
-				    <button class="btn btn-default mode" type="button" value="3"><i class="fas fa-moon"></i> MOON</button>
-				    <button class="btn btn-default mode active" type="button" value="4"><i class="fas fa-globe-asia"></i> MARS</button>
-				</p>
-				<hr>
 				<p> <div>
 					<h4>CHOOSE WHO DO YOU WANT TO PLAY WITH!</h4>
 			        <button class="btn btn-default playwith active" type="button"><i class="fas fa-robot"></i> AN AI!</button>
@@ -30,7 +22,37 @@
 			        <button class="btn btn-default playwith" type="button"><i class="fab fa-reddit-alien"></i> ALIENS!</button>
 				</div>
 				</p>            
-		        <hr>
+		        
+			    <section class="ai">
+					<hr>
+					<h4>CHOOSE TARGET!</h4>
+				    <button class="btn btn-default mode" type="button" value="1"><i class="fas fa-globe-africa"></i> EARTH</button>
+				    <button class="btn btn-default mode" type="button" value="2"><i class="fas fa-satellite"></i> ISS</button>
+				    <button class="btn btn-default mode" type="button" value="3"><i class="fas fa-moon"></i> MOON</button>
+				    <button class="btn btn-default mode active" type="button" value="4"><i class="fas fa-globe-asia"></i> MARS</button>
+			        <hr>	
+			    </section>
+				
+		        <section id=whenai class="ai">
+		        <div id=fp>
+					<h4>FIRST PLAYER!</h4>
+					<button class="btn btn-default player active" type="button"><i class="fas fa-robot"></i> AI</button>
+		            <button class="btn btn-default player" type="button"><i class="fas fa-user-astronaut"></i> HUMAN</button>
+				</div>
+				<div id=al>
+					<h4>ALGORITHM!</h4>
+					<button class="btn btn-default algo active" type="button">MINIMAX</button>
+		            <button class="btn btn-default algo" type="button">NEGAMAX</button>
+	                <button class="btn btn-default algo" type="button">SSS*</button>
+				</div>
+				</section>
+		        <section id=whencrew>
+					<hr>
+					<h4>CHOOSE NUMBER OF PLAYERS!</h4>
+					<button class="btn btn-default board active" type="button">2 PLAYERS</button>
+		            <button class="btn btn-default board" type="button">3 PLAYERS</button>
+		         </section>
+	            <hr>
 				<a class="btn btn-default" href="/gameboard" role="button"><i class="fas fa-rocket"></i> START GAME !</a>
  			</div>
  		</div>
