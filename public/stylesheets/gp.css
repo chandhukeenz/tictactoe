@@ -48,17 +48,22 @@ canvas{
 	width:309px;
 	display: inline-block;
 	float:left;
+	margin-left:105px;
+	padding-top:5%;
 }
 #instruction2,#instruction3{
 	position:relative;
 	text-align:left;
-	padding-top:13%;
+	padding-top:3%;
 	height: 317px;
-	width:150px;
+	width:250px;
 	display: inline-block;
 	float:right;	
+	margin-right:55px;
 }
-
+p{
+	font-size:18px;
+}
 
 ul{
 	margin:15px;
