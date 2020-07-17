@@ -138,7 +138,7 @@ alert(play);
 	}
 	function playAI(){
 		//alert("inside playai");
-		var nextMove= minimax(symbol,ai);
+		var nextMove= minimax(symbol,ai,0,-Infinity,+Infinity);
 		var nextId = "canvas"+(nextMove.id +1);
 		box = document.getElementById(nextId);
 		ctx=box.getContext("2d");
@@ -160,23 +160,24 @@ alert(play);
 			}
 		}
 	}
-	function minimax(newSymbol,player){
+	function minimax(newSymbol,player,depth,alpha,beta){
+		//alert(typeof(alpha));
 		var empty =[];
 		empty= emptyBoxes(newSymbol);
 		if(winnerCheck(newSymbol,human)){
-			return {score:-10};	
+			return {score:-10,depth};	
 		}
 		else if(winnerCheck(newSymbol,ai)){
-			return {score:10};
+			return {score:10,depth};
 		}
 		else if(empty.length===0){
 			if(winnerCheck(newSymbol,human)){
-			return {score:-10};	
+			return {score:-10,depth};	
 		}
 		else if(winnerCheck(newSymbol,ai)){
-			return {score:10};
+			return {score:10,depth};
 		}
-			return {score:0};
+			return {score:0,depth};
 		}
 		
 		var posMoves =[];
@@ -190,24 +191,34 @@ alert(play);
 			//alert(level);
 			//alert(typeof(level));
 			if(player===ai){
-				result = minimax(newSymbol,human);
+				result = minimax(newSymbol,human,depth+1,alpha,beta);
 				curMove.score =result.score+ Math.random()*(2* Number(difficulty[level])) +(-1* Number(difficulty[level]));
+				curMove.depth=result.depth;
 			}
 			else{
-				result = minimax(newSymbol,ai);
+				result = minimax(newSymbol,ai,depth+1,alpha,beta);
 				curMove.score = result.score+ Math.random()*(2* Number(difficulty[level])) +(-1* Number(difficulty[level]));
+				curMove.depth=result.depth;
 			}
 			newSymbol[empty[i]]='';
 			posMoves.push(curMove);	
 		}
+		
 		var bestMove;
 		if(player===ai){
+			//alert(posMoves.score);
 			var highestScore =-1000;
+			var lowestdepth= 1000;
 			//alert(posMoves);
 			for(var j=0;j<posMoves.length;j++){
-				if(posMoves[j].score > highestScore){
+				if(posMoves[j].score > highestScore || (posMoves[j].score==highestScore && posMoves[j].depth<lowestdepth)){
 					highestScore = posMoves[j].score;
 					bestMove = j;
+					alpha=highestScore;
+					lowestdepth=posMoves[j].depth;
+				}
+				if(alpha>=beta){
+					break;
 				}
 			}
 		}
@@ -217,6 +228,10 @@ alert(play);
 				if(posMoves[j].score<lowestScore){
 					lowestScore=posMoves[j].score;
 					bestMove=j;
+					beta=lowestScore;
+				}
+				if(alpha>=beta){
+					break;
 				}
 			}
 		}
