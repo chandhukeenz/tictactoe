@@ -1,31 +1,17 @@
 const http = require("http");
 var express = require("express");
 var app = express();
-var bodyParser = require("body-parser");
-
-app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
-
-app.use(express.static(__dirname+"/public"));
 app.use(express.static(__dirname+"/jscript"));
-
 app.get("/", function(req, res){
-	res.render("home");
-	});
-app.get("/gameboard", function(req, res){
-	res.render("gameboard");
-	});
-app.get("*", function(req, res){
-	res.send("<h1>SORRY! PAGE NOT FOUND!!</h1>");
+	res.render("index");
 	});
 
-var port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log("tictactoe Server started! at 3000");
-});
+app.listen(9091, ()=>console.log("Listening on http port 9091"))
 const websocketServer = require("websocket").server
 const httpServer = http.createServer();
 httpServer.listen(9090, () => console.log("Listening.. on 9090"))
+//hashmap clients
 const clients = {};
 const games = {};
 
