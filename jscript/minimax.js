@@ -10,7 +10,9 @@ window.onload= function(){
 	var gameover =false;
 	var human='X';
 	var ai='O';
-	var result={};	
+	var result={};
+	var resultnega={};
+	var max;
 	filled = new Array();
 	symbol = new Array();
 	//all winning positions
@@ -138,7 +140,12 @@ alert(play);
 	}
 	function playAI(){
 		//alert("inside playai");
-		var nextMove= minimax(symbol,ai,0,-Infinity,+Infinity);
+		if(algo==0){
+		var nextMove= minimax(symbol,ai,0,-Infinity,+Infinity);	
+		}else if(algo==1){
+			var nextMove=negamax(symbol, ai,0,-Infinity,+Infinity,1);
+		}
+		
 		var nextId = "canvas"+(nextMove.id +1);
 		box = document.getElementById(nextId);
 		ctx=box.getContext("2d");
@@ -202,17 +209,21 @@ alert(play);
 			}
 			newSymbol[empty[i]]='';
 			posMoves.push(curMove);	
+			//console.log(posMoves.score +" posmoves");
 		}
 		
 		var bestMove;
 		if(player===ai){
-			//alert(posMoves.score);
+			//console.log(posMoves[1].score);
 			var highestScore =-1000;
 			var lowestdepth= 1000;
 			//alert(posMoves);
 			for(var j=0;j<posMoves.length;j++){
 				if(posMoves[j].score > highestScore || (posMoves[j].score==highestScore && posMoves[j].depth<lowestdepth)){
+					//console.log(posMoves[j].score + " 1");
+					//console.log(highestScore + " 2");
 					highestScore = posMoves[j].score;
+					//console.log(highestScore + " 3");
 					bestMove = j;
 					alpha=highestScore;
 					lowestdepth=posMoves[j].depth;
@@ -238,4 +249,92 @@ alert(play);
 		return posMoves[bestMove];
 	}
 	
+	function negamax(newSymbol,player,depth,alpha,beta,color){
+		var emptynega =[];
+		emptynega= emptyBoxes(newSymbol);
+		if(winnerCheck(newSymbol,human)){
+			return {score:-10,depth};	
+		}
+		else if(winnerCheck(newSymbol,ai)){
+			return {score:10,depth};
+		}
+		else if(emptynega.length===0){
+			if(winnerCheck(newSymbol,human)){
+			return {score:-10,depth};	
+		}
+		else if(winnerCheck(newSymbol,ai)){
+			return {score:10,depth};
+		}
+			return {score:0,depth};
+		}
+		
+		var posMovesnega =[];
+		for(var i=0;i<emptynega.length;i++){
+			var curMovenega={};
+			curMovenega.id=emptynega[i];
+			newSymbol[emptynega[i]]=player;
+			//level=findlevel();
+			//alert(level +"inside minimax");
+			var levelnega = Number(sessionStorage.getItem("level"));
+			//alert(level);
+			//alert(typeof(level));
+			if(player===ai){
+				resultnega = negamax(newSymbol,human,depth+1,-1*beta,-1*alpha,-1*color);
+				curMovenega.score =(-1*resultnega.score)*color;
+				curMovenega.depth=resultnega.depth;
+			}
+			else{
+				resultnega = negamax(newSymbol,ai,depth+1,-1*beta,-1*alpha,-1*color);
+				curMovenega.score = (-1*resultnega.score)*color;
+				curMovenega.depth=resultnega.depth;
+			}
+			newSymbol[emptynega[i]]='';
+			posMovesnega.push(curMovenega);	
+			//console.log(posMoves.score +" posmoves");
+		}
+		
+		var bestMovenega;
+		if(player===ai){
+			//console.log(posMoves[1].score);
+			var highestScorenega =-1000;
+			var lowestdepthnega= 1000;
+			//alert(posMoves);
+			for(var j=0;j<posMovesnega.length;j++){
+				if(posMovesnega[j].score > highestScorenega){
+					//console.log(posMoves[j].score + " 1");
+					//console.log(highestScore + " 2");
+					highestScorenega = posMovesnega[j].score;
+					//console.log(highestScore + " 3");
+					bestMovenega = j;
+					alpha=highestScorenega;
+					lowestdepthnega=posMovesnega[j].depth;
+				}
+				if(alpha>=beta){
+					break;
+				}
+			}
+		}
+		else{
+			var lowestScorenega = 1000;
+			for(var j=0;j<posMovesnega.length;j++){
+				if(posMovesnega[j].score<lowestScorenega){
+					lowestScorenega=posMovesnega[j].score;
+					bestMovenega=j;
+					beta=lowestScorenega;
+				}
+				if(alpha>=beta){
+					break;
+				}
+			}
+		}
+		console.log(posMovesnega[bestMovenega]);
+		return posMovesnega[bestMovenega];
+		
+	}
+	       
+	
+   
 };
+
+
+
