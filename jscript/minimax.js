@@ -16,10 +16,27 @@ window.onload= function(){
 	filled = new Array();
 	symbol = new Array();
 	//all winning positions
-	winner=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+	winner=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]; //winning
 	var firstplayer = Number(sessionStorage.getItem("player"));
 	var algo = Number(sessionStorage.getItem("algo"));
 	var play = Number(sessionStorage.getItem("play"));
+	//negamax*********
+	
+	var xoField = [ "", "", "", "", "", "", "", "", "" ], //winning=winner  
+  baseAlpha = -Infinity,
+  baseBeta = Infinity,
+  maximumDepth = 6,
+	autoMove = "",
+  playerMove = "",
+  computerMove = "",
+  initialDepth = 0;
+	
+	
+	
+	
+	
+	
+	
 	//alert(firstplayer);
 	//alert(algo);	
 		//initialising all positions as blank
@@ -28,9 +45,15 @@ window.onload= function(){
 		symbol[i]='';
 	}
 	if(firstplayer==0 && play==0){
-		playAI();
+		if(algo==0){
+			playAI();
+		}else if(algo==1){
+			autoMoveHandling(xoField, ai, initialDepth, baseAlpha, baseBeta,1);	
+		}
+		
 	}
-alert(play);
+	
+    //alert(play);
 	//listens for click
 	
 	document.getElementById("tic2").addEventListener("click",function(e){
@@ -97,9 +120,17 @@ alert(play);
 						document.getElementById("result").innerText = "DRAW";
 						return;
 					}
-					
+					console.log(turn + " turn");
+					console.log(firstplayer);
+					console.log(play);
 					if(((firstplayer==0 && turn%2!==0)||(firstplayer==1 && turn%2==0)) && play==0){
-						playAI();
+						console.log("goes in");
+						if(algo==0){
+							playAI();
+						}else if(algo==1){
+							console.log("haha");
+							autoMoveHandling(xoField, ai, initialDepth, baseAlpha, baseBeta,1);
+						}	
 					}
 					
 				}
@@ -140,12 +171,7 @@ alert(play);
 	}
 	function playAI(){
 		//alert("inside playai");
-		if(algo==0){
 		var nextMove= minimax(symbol,ai,0,-Infinity,+Infinity);	
-		}else if(algo==1){
-			var nextMove=negamax(symbol, ai,0,-Infinity,+Infinity,1);
-		}
-		
 		var nextId = "canvas"+(nextMove.id +1);
 		box = document.getElementById(nextId);
 		ctx=box.getContext("2d");
@@ -249,89 +275,166 @@ alert(play);
 		return posMoves[bestMove];
 	}
 	
-	function negamax(newSymbol,player,depth,alpha,beta,color){
-		var emptynega =[];
-		emptynega= emptyBoxes(newSymbol);
-		if(winnerCheck(newSymbol,human)){
-			return {score:-10,depth};	
-		}
-		else if(winnerCheck(newSymbol,ai)){
-			return {score:10,depth};
-		}
-		else if(emptynega.length===0){
-			if(winnerCheck(newSymbol,human)){
-			return {score:-10,depth};	
-		}
-		else if(winnerCheck(newSymbol,ai)){
-			return {score:10,depth};
-		}
-			return {score:0,depth};
-		}
-		
-		var posMovesnega =[];
-		for(var i=0;i<emptynega.length;i++){
-			var curMovenega={};
-			curMovenega.id=emptynega[i];
-			newSymbol[emptynega[i]]=player;
-			//level=findlevel();
-			//alert(level +"inside minimax");
-			var levelnega = Number(sessionStorage.getItem("level"));
-			//alert(level);
-			//alert(typeof(level));
-			if(player===ai){
-				resultnega = negamax(newSymbol,human,depth+1,-1*beta,-1*alpha,-1*color);
-				curMovenega.score =(-1*resultnega.score)*color;
-				curMovenega.depth=resultnega.depth;
-			}
-			else{
-				resultnega = negamax(newSymbol,ai,depth+1,-1*beta,-1*alpha,-1*color);
-				curMovenega.score = (-1*resultnega.score)*color;
-				curMovenega.depth=resultnega.depth;
-			}
-			newSymbol[emptynega[i]]='';
-			posMovesnega.push(curMovenega);	
-			//console.log(posMoves.score +" posmoves");
-		}
-		
-		var bestMovenega;
-		if(player===ai){
-			//console.log(posMoves[1].score);
-			var highestScorenega =-1000;
-			var lowestdepthnega= 1000;
-			//alert(posMoves);
-			for(var j=0;j<posMovesnega.length;j++){
-				if(posMovesnega[j].score > highestScorenega){
-					//console.log(posMoves[j].score + " 1");
-					//console.log(highestScore + " 2");
-					highestScorenega = posMovesnega[j].score;
-					//console.log(highestScore + " 3");
-					bestMovenega = j;
-					alpha=highestScorenega;
-					lowestdepthnega=posMovesnega[j].depth;
+	function autoMoveHandling(altstate, move, depth, alpha, beta, color){
+     // debugger
+     negamax(altstate, move, depth, alpha, beta, color);
+      alert(autoMove + " hoo");
+        xoField[autoMove] = ai;
+		alert(xoField +" xo");
+	    var nextId = "canvas"+(Number(autoMove)+1);
+		box = document.getElementById(nextId);
+		ctx=box.getContext("2d");
+		if(gameover===false){
+			if((firstplayer==0 && turn%2!==0)||(firstplayer==1 && turn%2==0) ){
+				turn++;
+				drawO(autoMove);
+				filled[autoMove]=true;
+				alert(filled);
+				if(turn>=5){
+					if(winnerCheck(symbol,symbol[autoMove])===true){
+						document.getElementById("result").innerText="Player "+symbol[autoMove]+" won";
+					    gameover=true;
+					}	
 				}
-				if(alpha>=beta){
-					break;
+				if(turn>9 && gameover!==true){
+						document.getElementById("result").innerText = "DRAW";
+						return;
 				}
 			}
 		}
-		else{
-			var lowestScorenega = 1000;
-			for(var j=0;j<posMovesnega.length;j++){
-				if(posMovesnega[j].score<lowestScorenega){
-					lowestScorenega=posMovesnega[j].score;
-					bestMovenega=j;
-					beta=lowestScorenega;
-				}
-				if(alpha>=beta){
-					break;
-				}
-			}
-		}
-		console.log(posMovesnega[bestMovenega]);
-		return posMovesnega[bestMovenega];
-		
+    screenWinners(altstate);
+  };
+	    
+function screenWinners(state){
+   if(checkWin(state) && result === "Player won"){
+         alert("Player wins");
+         
+       }
+      else if(checkWin(state) && result === "Computer won"){
+        alert("Computer wins");
+        
+      }
+      else if(checkWin(state) && result === "draw"){
+        alert("tie game");
+        
+      }
+ } 
+
+// Returns available indexes of each state.
+function getAvailableMoves(state){
+  var freeIndexes = [];
+  for(var i = 0; i < 9; i++){
+    if(state[i] === ""){
+      freeIndexes.push(i);
+    }
+  }
+//alert("get moves");
+  return freeIndexes;
+}
+ 
+// Evaluates valid terminal states    
+function checkWin(state){
+      
+  for(var i = 0; i < winner.length; i++){
+      var a = winner[i];
+        
+      var indx0 = state[a[0]];
+      var indx1 = state[a[1]];
+      var indx2 = state[a[2]];
+        
+  if(indx0 === playerMove && indx0 === indx1 && indx1 === indx2){
+     // result =  indx0 + "-won";
+      //result = "Player won"
+      var win = a;
+      return true;
+    }
+  if(indx0 === computerMove && indx0 === indx1 && indx1 === indx2){
+      //result = indx0 + "-won";
+      //result = "Computer won";
+      return true;
+    }
+ }
+      
+  var available = emptyBoxes(state);
+          
+  if(available.length === 0) {
+    console.log("draw");
+      //result = "draw";
+      return true;
+  }
+  else {
+      return false;
+    }
+};
+       
+function score(state, depth) {
+	if (checkWin(state) && result === "Player won") {
+    return -10 + depth;
+	} else if (checkWin(state) && result === "Computer won") {
+    return 10 - depth;
+	} else {
+		return 0;
 	}
-	       
+}
+    
+ function switchTurn(move){
+  if(move === human){
+    return ai;
+  }
+    else{
+      return human;
+    }
+  };  
+	
+function negamax(gameState, piece, depth, alpha, beta, color){
+	//alert("hello");
+	//alert(piece);
+	//console.log(depth >= maximumDepth +"1")
+	//console.log(winnerCheck(gameState,piece) +"2")
+  if(winnerCheck(gameState,piece) || depth >= maximumDepth){
+	 // alert("huh");
+    return score(gameState, depth) * color;
+  }
+  
+  //Any large integer pair, such as -1000 and 1000 will work
+  var max = -Infinity;
+  var values = [];
+  var moves = [];
+  
+  /* Other ways of handling turn switching. */
+ // var autoPlayer = switchTurn(piece);
+ // var autoPlayer = (piece === playerMove) ? computerMove : playerMove;
+  
+  var availableMoves = emptyBoxes(gameState);
+	console.log(availableMoves +" avilmove");
+  for(var i = 0; i < availableMoves.length; i++){
+	  //alert("dooood");
+    var newState = gameState.slice(0);
+    newState[availableMoves[i]] = piece;
+    values.push(-negamax(newState, switchTurn(piece), depth + 1, -beta, -alpha, -color));
+    moves.push(availableMoves[i]);
+  }
+	
+    values.filter(function(a, i){
+		//alert("im soo cool");
+      if(a > max){
+		 // alert("heheh");
+        max = a;
+       var index = i;
+       autoMove = moves[index];
+      }
+      if(a > alpha){
+        alpha = a;
+      }
+      if(alpha >= beta){
+        return alpha;
+      }
+    });
+	console.log(autoMove +" auto");
+	console.log(max);
+    return max;
+ 
+  } // negamax
 	
    
 };
