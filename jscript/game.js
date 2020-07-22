@@ -2,7 +2,9 @@
     var three=document.querySelector("#tic3");
     var instwo=document.querySelector("#instruction2");
     var insthree=document.querySelector("#instruction3");
+    var hintbox=document.querySelector("#hint")
     var board = Number(sessionStorage.getItem("board"));
+    var hint=Number(sessionStorage.getItem("hint"));
     if(board==0){
 		two.style.display="block";
         instwo.style.display="block";
@@ -15,7 +17,11 @@
         three.style.display="block";
         insthree.style.display="block";
 	}
-    
+    if(hint==0){
+		hintbox.style.display="none";
+	}else if(hint==1){
+		hintbox.style.display="inline-block";
+	}
     var resetButton = document.querySelector(".reset");
 	resetButton.addEventListener("click",function(){
     reset();

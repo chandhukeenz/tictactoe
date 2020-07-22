@@ -61,6 +61,14 @@ canvas{
 	float:right;	
 	margin-right:55px;
 }
+#hint{
+	position:relative;
+	height: 40px;
+	width:40px;
+	margin-left:10px;
+	display: inline-block;
+	float:center;	
+}
 p{
 	font-size:18px;
 }

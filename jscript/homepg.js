@@ -1,19 +1,48 @@
 window.onload=function(){
 	var ai=document.querySelectorAll(".ai");
 	var crew=document.querySelector("#whencrew");
+	var hintcrew=document.querySelector("#when2");
+	hintcrew.style.display="none";
 	ai[0].style.display="block";
 	ai[1].style.display="block";
 	crew.style.display="none";
 	var modeButtons = document.querySelectorAll(".mode");
 	var playwithButtons = document.querySelectorAll(".playwith");
 	var playerButtons = document.querySelectorAll(".player");
-	var algoButtons = document.querySelectorAll(".algo");
+	var crewhintButtons = document.querySelectorAll("#when2 .hint");
+	var aihintButtons=document.querySelectorAll("#al .hint");
 	var boardButtons = document.querySelectorAll(".board");
 	sessionStorage.setItem("player",0);
-	sessionStorage.setItem("algo", 0);
+	sessionStorage.setItem("hint", 0);
 	sessionStorage.setItem("level", 3);
 	sessionStorage.setItem("play", 0);
 	sessionStorage.setItem("board", 0);
+	
+	function restart(){
+	//var hintButtons = document.querySelectorAll(".hint");
+	sessionStorage.setItem("player",0);
+	sessionStorage.setItem("hint", 0);
+	sessionStorage.setItem("level", 3);
+	sessionStorage.setItem("board", 0);
+	modeButtons[0].classList.remove("active");
+    modeButtons[1].classList.remove("active");
+	modeButtons[2].classList.remove("active");
+	modeButtons[3].classList.remove("active");
+	modeButtons[3].classList.add("active");
+	playerButtons[0].classList.remove("active");
+    playerButtons[1].classList.remove("active");
+	playerButtons[0].classList.add("active");	
+	crewhintButtons[0].classList.remove("active");
+    crewhintButtons[1].classList.remove("active");
+	crewhintButtons[0].classList.add("active");
+	aihintButtons[0].classList.remove("active");
+    aihintButtons[1].classList.remove("active");
+	aihintButtons[0].classList.add("active");
+	boardButtons[0].classList.remove("active");
+    boardButtons[1].classList.remove("active");
+	boardButtons[0].classList.add("active");
+	}
+	
 	
 	for(var i=0;i<modeButtons.length;i++){
 	modeButtons[i].addEventListener("click",function(){
@@ -61,21 +90,33 @@ window.onload=function(){
 	//findlevel(this.textContent);
 	})
 	}
-	for(var i=0;i<algoButtons.length;i++){
-	algoButtons[i].addEventListener("click",function(){
-	var algo;
-    algoButtons[0].classList.remove("active");
-    algoButtons[1].classList.remove("active");
-	algoButtons[2].classList.remove("active");
-	//reset();
+	for(var i=0;i<crewhintButtons.length;i++){
+	crewhintButtons[i].addEventListener("click",function(){
+	var hint;
+	//alert("hi");
+    crewhintButtons[0].classList.remove("active");
+    crewhintButtons[1].classList.remove("active");
     this.classList.add("active")
 	y=this.textContent;
-	y==="MINIMAX" ? algo=0:y==="NEGAMAX" ? algo=1:algo=2;	
-    sessionStorage.setItem("algo", algo);
-		//location.reload("/minimax.js");
-	//setup();
+	y===" WITHOUT HINT" ? hint=0:hint=1;	
+    sessionStorage.setItem("hint", hint);
 	})
     }
+	
+	for(var i=0;i<aihintButtons.length;i++){
+	aihintButtons[i].addEventListener("click",function(){
+	var hint;
+	//alert("hi");
+    aihintButtons[0].classList.remove("active");crew
+    aihintButtons[1].classList.remove("active");
+    this.classList.add("active")
+	y=this.textContent;
+	y===" WITHOUT HINT" ? hint=0:hint=1;	
+    sessionStorage.setItem("hint", hint);
+	})
+    }
+	
+	
 	for(var i=0;i<boardButtons.length;i++){
 	boardButtons[i].addEventListener("click",function(){
 	var board=0;
@@ -85,6 +126,7 @@ window.onload=function(){
 	y=this.textContent;
 	y==="2 PLAYERS" ? board=0:board=1;	
     sessionStorage.setItem("board", board);
+	offerhint();
 	})
     }
 	function display(player){
@@ -92,15 +134,28 @@ window.onload=function(){
 		ai[0].style.display="none";
 		ai[1].style.display="none";
 		crew.style.display="block";
+		hintcrew.style.display="block";
 	}else if(player==0){
 		ai[0].style.display="block";
 		ai[1].style.display="block";
 		crew.style.display="none";
+		hintcrew.style.display="none";
 	}else if(player==2){
 		ai[0].style.display="none";
 		ai[1].style.display="none";
 		crew.style.display="none";
+		hintcrew.style.display="none";
 	}
+		restart();
+	}
+	function offerhint(){
+		var b=Number(sessionStorage.getItem("board"));
+		if(b==0){
+			hintcrew.style.display="block";
+		}else if(b==1){
+			hintcrew.style.display="none";
+		}
+		
 	}
 	
 }
