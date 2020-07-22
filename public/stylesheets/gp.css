@@ -62,13 +62,17 @@ canvas{
 	margin-right:55px;
 }
 #hint{
+	font-size:35px;
 	position:relative;
 	height: 40px;
 	width:40px;
 	margin-left:10px;
 	display: inline-block;
 	float:center;	
+	border-color:white;
+	border-width:5px;
 }
+
 p{
 	font-size:18px;
 }
@@ -95,4 +99,7 @@ ul{
 }
 canvas:hover{
 	background-color:#0e0e0c;
+}
+hr{
+	width:250px;
 }

@@ -25,11 +25,28 @@ window.onload= function(){
 	//alert(firstplayer);
 	//alert(algo);	
 		//initialising all positions as blank
+	function starttime(){
+		if(!gameover){
+				var seconds = 10;
+    var countdown = setInterval(function() {
+    seconds--;
+    document.getElementById("countdown").textContent = seconds;
+    if (seconds <= 0 ){ 
+		clearInterval(countdown);
+		gameover=true;
+		document.getElementById("result").innerText = "TIMEOUT";
+	}
+    }, 1000);	
+		}
+
+	}
+	
+	
 	for(var i=0;i<9;i++){
 		filled[i]=false;
 		symbol[i]='';
 	}
-	if(firstplayer==0 && play==0){
+	if(firstplayer==0 && (play==0||play==2)){
 		playAI();
 	}
 alert(play);
@@ -87,7 +104,7 @@ alert(play);
 		
 		if(filled[num-1]=== false){
 			if(gameover===false){
-				if((firstplayer===0 && turn%2==0 && play===0)||(firstplayer===1 && turn%2!==0 && play===0)||(play===1 && turn%2!==0)){
+				if((firstplayer===0 && turn%2==0 && (play===0||play==2))||(firstplayer===1 && turn%2!==0 && (play===0||play==2))||(play===1 && turn%2!==0)){
 					//alert(firstplayer);
 					//alert(turn);
 					//alert(play);
@@ -105,7 +122,7 @@ alert(play);
 						return;
 					}
 					
-					if(((firstplayer==0 && turn%2!==0)||(firstplayer==1 && turn%2==0)) && play==0){
+					if(((firstplayer==0 && turn%2!==0)||(firstplayer==1 && turn%2==0)) && (play==0||play==2)){
 						playAI();
 					}
 					
@@ -190,6 +207,7 @@ alert(play);
 				}
 			}
 		}
+		starttime();
 	}
 	function minimax(newSymbol,player,depth,alpha,beta,fromhint){
 		//alert(typeof(alpha));

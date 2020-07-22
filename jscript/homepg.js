@@ -142,7 +142,7 @@ window.onload=function(){
 		hintcrew.style.display="none";
 	}else if(player==2){
 		ai[0].style.display="none";
-		ai[1].style.display="none";
+		ai[1].style.display="block";
 		crew.style.display="none";
 		hintcrew.style.display="none";
 	}
