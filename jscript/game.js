@@ -4,6 +4,7 @@
     var insthree=document.querySelector("#instruction3");
     var hintbox=document.querySelector("#hint");
     var clock=document.querySelector("#clock");
+    var bomb=document.querySelector("#bomb")
     var board = Number(sessionStorage.getItem("board"));
     var hint=Number(sessionStorage.getItem("hint"));
     var play= Number(sessionStorage.getItem("play"));
@@ -26,8 +27,10 @@
 	}
     if(play==2){
 		clock.style.display="inline-block";
+		bomb.style.display="block";
 	}else{
 		clock.style.display="none";
+		bomb.style.display="none";
 	}
     var resetButton = document.querySelector(".reset");
 	resetButton.addEventListener("click",function(){

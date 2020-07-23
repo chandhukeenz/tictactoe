@@ -114,7 +114,7 @@ ul{
 	margin:15px;
 }
 
-.btn-lg{
+.btn-lg,.tichint{
 	background-color: Transparent;
 	border: none;
 	color:white;
@@ -136,6 +136,7 @@ canvas:hover{
 }
 hr{
 	width:250px;
+	margin:0px;
 }
 #instruction2 h2,#instruction3 h2{
 	margin-top:0px;
