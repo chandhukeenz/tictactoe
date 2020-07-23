@@ -11,13 +11,13 @@
 <body>
 
 <div class="container">
-<header><h1>TIC TAC TOE <span id="bottom">
-	<a class="btn btn-default btn-lg" href="/" role="button"><i class="fas fa-rocket"></i> GO TO HOMEPAGE !</a>
-	<button class="btn btn-default btn-lg reset" type="button">NEW GAME</button>	
-	</span> </h1>
-	
+<header>
+	<section id="top">
+		<div id="gotohome"><a class="btn btn-default btn-lg" href="/" role="button" title="GO TO HOMEPAGE">TIC TAC TOE</a></div>
+	    <div id="result"></div>
+	</section>
 	</header>
-	<h1 id="result"></h1>
+	
 	<section id="game">
 		<div id="tic2">
 		<canvas id="canvas1" width="100" height="100"></canvas>	
@@ -49,7 +49,7 @@
 		    <canvas id="block33" width="100" height="100"></canvas> <br/>
 		</div>
 		<div id="hint">
-			<button class="btn btn-default btn-sm tichint" type="button"><i class="fa fa-lightbulb" aria-hidden="true"></i></button>
+			<button class="btn btn-default btn-sm tichint" type="button" title="Click to find the next optimal move! look at the boxes carefully to find ur hint!"><i class="fa fa-lightbulb" aria-hidden="true"></i></button>
 		</div>
 		
 		
@@ -60,16 +60,17 @@
 			<p>EACH PLAYER SHOULD TAKE TURNS</p>
 			<p>PLAYER WHO IS FIRST TO FILL 3 CONSECUTIVE BOXES IN A ROW/ COLOUMN/ DIAGONAL WINS</p>
 			<p>PRESS NEW GAME TO START A FRESH GAME AT ANY POINT</p>
+			<p>PRESS "TIC TAC TOE" TO GO TO HOMEPAGE</p>
 		</div>
 		<div id="instruction3">
 			<h2>INSTRUCTIONS</h2>
-			<p>THREE PLAYER GAME</p>
-			<p>EACH PLAYER SHOULD TAKE TURNS</p>
 			<p>PLAYER WHO IS FIRST TO FILL 3 BOXES IN A ROW/COLOUMN OR 4 CONSECUTIVE BOXES IN A DIAGONAL WINS</p>
 			<p>PRESS NEW GAME TO START A FRESH GAME AT ANY POINT</p>
+			<p>PRESS "TIC TAC TOE" TO GO TO HOMEPAGE</p>
 		</div>
-		
+		<button class="btn btn-default btn-md reset" type="button">NEW GAME</button>		
 	</section>
+	
 	
 </div>
 	 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>

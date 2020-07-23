@@ -43,7 +43,7 @@ window.onload= function(){
     if (seconds <= 0 ){ 
 		clearInterval(countdown);
 		if(document.getElementById("result").innerText==''){
-			document.getElementById("result").innerText = "TIMEOUT";
+			document.getElementById("result").innerText = "BOMB BLASTED!";
 			gameover=true;
 		}
 		clearInterval(countdown);
@@ -124,12 +124,12 @@ alert(play);
 					filled[num-1]=true;
 					if(turn>=5){
 						if(winnerCheck(symbol,symbol[num-1])===true){
-							document.getElementById("result").innerText = "player "+symbol[num-1]+" won!";
+							document.getElementById("result").innerText = "PLAYER '"+symbol[num-1]+"' WON!";
 						    gameover=true;
 					    }
 					}
 					if(turn>9 && gameover!==true){
-						document.getElementById("result").innerText = "DRAW";
+						document.getElementById("result").innerText = "MATCH TIED!";
 						return;
 					}
 					
@@ -144,12 +144,12 @@ alert(play);
 					filled[num-1]=true;
 					if(turn>=5){
 						if(winnerCheck(symbol,symbol[num-1])===true){
-							document.getElementById("result").innerText = "player "+symbol[num-1]+" won!";
+							document.getElementById("result").innerText = "PLAYER '"+symbol[num-1]+"' WON!";
 						    gameover=true;
 					    }
 					}
 					if(turn>9 && gameover!==true){
-						document.getElementById("result").innerText = "DRAW";
+						document.getElementById("result").innerText = "MATCH TIED!";
 						return;
 					}	
 				}
@@ -208,17 +208,19 @@ alert(play);
 				filled[nextMove.id]=true;
 				if(turn>=5){
 					if(winnerCheck(symbol,symbol[nextMove.id])===true){
-						document.getElementById("result").innerText="Player "+symbol[nextMove.id]+" won";
+						document.getElementById("result").innerText="PLAYER '"+symbol[nextMove.id]+"' WON";
 					    gameover=true;
 					}	
 				}
 				if(turn>9 && gameover!==true){
-						document.getElementById("result").innerText = "DRAW";
+						document.getElementById("result").innerText = "MATCH TIED!";
 						return;
 				}
 			}
 		}
-		starttime();
+		if(play==2){
+			starttime();
+		}
 	}
 	function minimax(newSymbol,player,depth,alpha,beta,fromhint){
 		//alert(typeof(alpha));

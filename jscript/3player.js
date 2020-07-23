@@ -136,11 +136,11 @@ function blockClick(numId){
 				drawX();
 				filled[x][y]=true;
 				if(winnercheck(symbol,symbol[x][y])===true){
-					document.getElementById("result").innerText = "player "+symbol[x][y]+" won!";
+					document.getElementById("result").innerText = "PLAYER '"+symbol[x][y]+"' WON!";
 					gameover=true;
 				}
 				if(turn>16 && gameover!==true){
-					document.getElementById("result").innerText = "DRAW";
+					document.getElementById("result").innerText = "MATCH TIED!";
 					gameover=true;
 				}
 			}else if(whoturn==2){
@@ -148,11 +148,11 @@ function blockClick(numId){
 				drawO();
 				filled[x][y]=true;
 				if(winnercheck(symbol,symbol[x][y])===true){
-					document.getElementById("result").innerText = "player "+symbol[x][y]+" won!";
+					document.getElementById("result").innerText = "PLAYER '"+symbol[x][y]+"' WON!";
 					gameover=true;
 				}
 				if(turn>16 && gameover!==true){
-					document.getElementById("result").innerText = "DRAW";
+					document.getElementById("result").innerText = "MATCH TIED!";
 					gameover=true;
 				}
 			}else if(whoturn==3){
@@ -160,11 +160,11 @@ function blockClick(numId){
 				drawslash();
 				filled[x][y]=true;
 				if(winnercheck(symbol,symbol[x][y])===true){
-					document.getElementById("result").innerText = "player "+symbol[x][y]+" won!";
+					document.getElementById("result").innerText = "PLAYER '"+symbol[x][y]+"' WON!";
 					gameover=true;
 				}
 				if(turn>16 && gameover!==true){
-					document.getElementById("result").innerText = "DRAW";
+					document.getElementById("result").innerText = "MATCH TIED!";
 					gameover=true;
 				}	
 			}
