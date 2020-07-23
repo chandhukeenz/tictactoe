@@ -9,73 +9,67 @@
 	    <link rel="stylesheet" href="/stylesheets/gp.css">
 	</head>
 <body>
-
-<div class="container">
-<header>
-	<section id="top">
-		<div id="gotohome"><a class="btn btn-default btn-lg" href="/" role="button" title="GO TO HOMEPAGE">TIC TAC TOE</a></div>
-	    <div id="result"></div>
-	</section>
-	</header>
-	
-	<section id="game">
-		<div id="tic2">
-		<canvas id="canvas1" width="100" height="100"></canvas>	
-		<canvas id="canvas2" width="100" height="100"></canvas>	
-		<canvas id="canvas3" width="100" height="100"></canvas>	<br/>
-		<canvas id="canvas4" width="100" height="100"></canvas>	
-		<canvas id="canvas5" width="100" height="100"></canvas>	
-		<canvas id="canvas6" width="100" height="100"></canvas>	<br/>
-		<canvas id="canvas7" width="100" height="100"></canvas>	
-		<canvas id="canvas8" width="100" height="100"></canvas>	
-		<canvas id="canvas9" width="100" height="100"></canvas>	<br/>
-    	</div>
-		<div id="tic3">
-			<canvas id="block00" width="100" height="100"></canvas>	
-		    <canvas id="block01" width="100" height="100"></canvas>	
-		    <canvas id="block02" width="100" height="100"></canvas>	
-		    <canvas id="block03" width="100" height="100"></canvas>	<br/>
-		    <canvas id="block10" width="100" height="100"></canvas>	
-		    <canvas id="block11" width="100" height="100"></canvas>	
-		    <canvas id="block12" width="100" height="100"></canvas>	
-		    <canvas id="block13" width="100" height="100"></canvas>	<br/>
-		    <canvas id="block20" width="100" height="100"></canvas>	
-		    <canvas id="block21" width="100" height="100"></canvas>	
-		    <canvas id="block22" width="100" height="100"></canvas>	
-		    <canvas id="block23" width="100" height="100"></canvas>	<br/>
-			<canvas id="block30" width="100" height="100"></canvas>	
-		    <canvas id="block31" width="100" height="100"></canvas>	
-		    <canvas id="block32" width="100" height="100"></canvas>	
-		    <canvas id="block33" width="100" height="100"></canvas> <br/>
-		</div>
-		<div id="hint">
-			<button class="btn btn-default btn-sm tichint" type="button" title="Click to find the next optimal move! look at the boxes carefully to find ur hint!"><i class="fa fa-lightbulb" aria-hidden="true"></i></button>
-		</div>
-		
-		
-	    <div id="instruction2">	
-			<div id="clock"><h3>TIK TIK: <span id="countdown"></span></h3><hr></div>
-			<h2>INSTRUCTIONS</h2>
-			<p>PLAYER WHO IS FIRST TO FILL 3 CONSECUTIVE BOXES IN A ROW/ COLOUMN/ DIAGONAL WINS</p>
-			<p>PRESS NEW GAME TO START A FRESH GAME AT ANY POINT</p>
-			<p>PRESS "TIC TAC TOE" TO GO TO HOMEPAGE</p>
-			<p id="bomb">CHOOSE YOUR MOVE BEFORE THE TIMER ENDS TO AVOID BLAST!</p>
-		</div>
-		<div id="instruction3">
-			<h2>INSTRUCTIONS</h2>
-			<p>PLAYER WHO IS FIRST TO FILL 3 BOXES IN A ROW/COLOUMN OR 4 CONSECUTIVE BOXES IN A DIAGONAL WINS</p>
-			<p>PRESS NEW GAME TO START A FRESH GAME AT ANY POINT</p>
-			<p>PRESS "TIC TAC TOE" TO GO TO HOMEPAGE</p>
-		</div>
-		<button class="btn btn-default btn-md reset" type="button">NEW GAME</button>		
-	</section>
-	
-	
-</div>
-	 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<div class="container">
+		<header>
+			<section id="top">
+				<div id="gotohome"><a class="btn btn-default btn-lg" href="/" role="button" title="GO TO HOMEPAGE">TIC TAC TOE</a></div>
+	            <div id="result"></div>
+	        </section>
+	    </header>
+		<section id="game">
+			<div id="tic2">
+				<canvas id="canvas1" width="100" height="100"></canvas>	
+		        <canvas id="canvas2" width="100" height="100"></canvas>	
+		        <canvas id="canvas3" width="100" height="100"></canvas>	<br/>
+		        <canvas id="canvas4" width="100" height="100"></canvas>	
+		        <canvas id="canvas5" width="100" height="100"></canvas>	
+		        <canvas id="canvas6" width="100" height="100"></canvas>	<br/>
+		        <canvas id="canvas7" width="100" height="100"></canvas>	
+		        <canvas id="canvas8" width="100" height="100"></canvas>	
+		        <canvas id="canvas9" width="100" height="100"></canvas>	<br/>
+    	    </div>
+			<div id="tic3">
+				<canvas id="block00" width="100" height="100"></canvas>	
+		        <canvas id="block01" width="100" height="100"></canvas>	
+		        <canvas id="block02" width="100" height="100"></canvas>	
+		        <canvas id="block03" width="100" height="100"></canvas>	<br/>
+		        <canvas id="block10" width="100" height="100"></canvas>	
+		        <canvas id="block11" width="100" height="100"></canvas>	
+		        <canvas id="block12" width="100" height="100"></canvas>	
+		        <canvas id="block13" width="100" height="100"></canvas>	<br/>
+		        <canvas id="block20" width="100" height="100"></canvas>	
+		        <canvas id="block21" width="100" height="100"></canvas>	
+		        <canvas id="block22" width="100" height="100"></canvas>	
+		        <canvas id="block23" width="100" height="100"></canvas>	<br/>
+			    <canvas id="block30" width="100" height="100"></canvas>	
+		        <canvas id="block31" width="100" height="100"></canvas>	
+		        <canvas id="block32" width="100" height="100"></canvas>	
+		        <canvas id="block33" width="100" height="100"></canvas> <br/>
+			</div>
+			<div id="hint">
+				<button class="btn btn-default btn-sm tichint" type="button" title="Click to find the next optimal move! look at the boxes carefully to find ur hint!"><i class="fa fa-lightbulb" aria-hidden="true"></i></button>
+			</div>
+			<div id="instruction2">
+				<div id="clock"><h3>TIK TIK: <span id="countdown"></span></h3><hr></div>
+				<h2>INSTRUCTIONS</h2>
+				<p>PLAYER WHO IS FIRST TO FILL 3 CONSECUTIVE BOXES IN A ROW/ COLOUMN/ DIAGONAL WINS</p>
+			    <p>PRESS NEW GAME TO START A FRESH GAME AT ANY POINT</p>
+			    <p>PRESS "TIC TAC TOE" TO GO TO HOMEPAGE</p>
+			    <p id="bomb">CHOOSE YOUR MOVE BEFORE THE TIMER ENDS TO AVOID BLAST!</p>
+			</div>
+		    <div id="instruction3">
+				<h2>INSTRUCTIONS</h2>
+			    <p>PLAYER WHO IS FIRST TO FILL 3 BOXES IN A ROW/COLOUMN OR 4 CONSECUTIVE BOXES IN A DIAGONAL WINS</p>
+			    <p>PRESS NEW GAME TO START A FRESH GAME AT ANY POINT</p>
+			    <p>PRESS "TIC TAC TOE" TO GO TO HOMEPAGE</p>
+			</div>
+			<button class="btn btn-default btn-md reset" type="button">NEW GAME</button>
+		</section>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/minimax.js"></script>
     <script type="text/javascript" src="/game.js"></script>
 	<script type="text/javascript" src="/3player.js"></script>
-  </body>
+</body>
 </html>
