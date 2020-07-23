@@ -25,20 +25,31 @@ window.onload= function(){
 	//alert(firstplayer);
 	//alert(algo);	
 		//initialising all positions as blank
+	
 	function starttime(){
-		if(!gameover){
-				var seconds = 10;
+	clearInterval(countdown);
+	var seconds=10;
+	document.getElementById("countdown").textContent = 10;
     var countdown = setInterval(function() {
-    seconds--;
+	seconds=document.getElementById("countdown").textContent;
+		if(seconds>=1){
+			seconds=seconds-1;
+		}
     document.getElementById("countdown").textContent = seconds;
+		if(document.getElementById("result").innerText!=''){
+			clearInterval(countdown);
+		    return;
+		}
     if (seconds <= 0 ){ 
 		clearInterval(countdown);
-		gameover=true;
-		document.getElementById("result").innerText = "TIMEOUT";
-	}
-    }, 1000);	
+		if(document.getElementById("result").innerText==''){
+			document.getElementById("result").innerText = "TIMEOUT";
+			gameover=true;
 		}
-
+		clearInterval(countdown);
+		return;
+	}
+    }, 2000);	
 	}
 	
 	
