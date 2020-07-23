@@ -1,5 +1,4 @@
 window.onload= function(){
-	
 	var difficulty=[20,8,4,0];
 	var num;
 	var box;
@@ -106,7 +105,6 @@ alert(play);
 		return false;
 	}
 	function boxClick(numId){
-		import ConfettiGenerator from "confetti-js";
 	   //alert(play +" inside boxclick");
 		
 		box= document.getElementById(numId);
@@ -128,10 +126,6 @@ alert(play);
 						if(winnerCheck(symbol,symbol[num-1])===true){
 							document.getElementById("result").innerText = "PLAYER '"+symbol[num-1]+"' WON!";
 						    gameover=true;
-							if(symbol[num-1]=="human"){
-								startConfetti();
-								
-							}
 					    }
 					}
 					if(turn>9 && gameover!==true){
