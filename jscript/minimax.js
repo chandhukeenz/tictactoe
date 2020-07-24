@@ -181,19 +181,26 @@ window.onload= function(){
 	
 	//showhint -->calls minimax to find the opt move for the player
 	function showhint(){
-		var hintsymbol = [];
-		//changing all x to o and vice-versa and storing in hintsymbol
-		for(var i = 0;i < symbol.length;i++){
-			if(symbol[i] == ai){
-				hintsymbol.push(human);
-			}else if(symbol[i] == human){
-				hintsymbol.push(ai);
-			}else{
-				hintsymbol.push('');
+		var hintMove;
+		//if the player is 'o' send symbol 
+		if(turn%2 == 0 && play == 1){
+			hintMove= minimax(symbol,ai,0,-Infinity,+Infinity,1);
+		}else{
+			//if the player is 'x' send hintsymbol
+			var hintsymbol = [];
+		    //changing all x to o and vice-versa and storing in hintsymbol
+		    for(var i = 0;i < symbol.length;i++){
+				if(symbol[i] == ai){
+					hintsymbol.push(human);
+				}else if(symbol[i] == human){
+					hintsymbol.push(ai);
+				}else{
+					hintsymbol.push('');
+				}
 			}
+			//calls minimax with hintsymbol and last argument 1 to convey minimax that call is from showhint
+			hintMove= minimax(hintsymbol,ai,0,-Infinity,+Infinity,1);
 		}
-		//calls minimax with hintsymbol and last argument 1 to convey minimax that call is from showhint
-		var hintMove= minimax(hintsymbol,ai,0,-Infinity,+Infinity,1);
 		//get element of hint move
 		var hintId = "canvas"+(hintMove.id +1);
 		//animate the box to hint the user
@@ -255,7 +262,7 @@ window.onload= function(){
 			return {score:0,depth};
 		}
 		
-		var posMoves = [];                                   //stores index,score,depth of all empty boxes 
+		var posMoves=[];                                   //stores index,score,depth of all empty boxes 
 		for(var i = 0;i < empty.length;i++){
 			var curMove = {};                                //stores index,score,depth empty box 
 			var level;                                       //difficulty mode of the gameover
@@ -295,7 +302,7 @@ window.onload= function(){
 			var lowestdepth = 1000;
 			//loop to find maximum score for max player
 			for(var j = 0;j < posMoves.length;j++){
-				if(posMoves[j].score > highestScore || (posMoves[j].score == highestScore && posMoves[j].depth<lowestdepth)){ //check for highestScore and least depth
+				if((posMoves[j].score > highestScore) || ((posMoves[j].score == highestScore) && (posMoves[j].depth<lowestdepth) && highestScore!==-10)||((posMoves[j].score == highestScore) && (posMoves[j].depth>lowestdepth) && highestScore==-10)){ //check for highestScore and least depth
 					highestScore = posMoves[j].score;
 					bestMove = j;
 					alpha = highestScore;
@@ -321,6 +328,7 @@ window.onload= function(){
 				}
 			}
 		}
+		console.log(posMoves);
 		return posMoves[bestMove];                  //return bestmove
 	}//minimax
 	 
