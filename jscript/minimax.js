@@ -140,7 +140,7 @@ window.onload= function(){
 						playAI();
 					}	
 				}
-				else if(turn%2 == 0 && play == 1){                           //check for player o turn
+				else if(turn%2 == 0 && play == 1){                          //check for player o turn
 					turn++;
 					drawO(num-1);
 					filled[num-1] = true;
@@ -262,7 +262,7 @@ window.onload= function(){
 			return {score:0,depth};
 		}
 		
-		var posMoves=[];                                   //stores index,score,depth of all empty boxes 
+		var posMoves=[];                                     //stores index,score,depth of all empty boxes 
 		for(var i = 0;i < empty.length;i++){
 			var curMove = {};                                //stores index,score,depth empty box 
 			var level;                                       //difficulty mode of the gameover

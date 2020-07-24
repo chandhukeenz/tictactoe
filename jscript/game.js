@@ -14,15 +14,15 @@ var play = Number(sessionStorage.getItem("play"));    // ai/crew/timer
 
 //displaying appropriate board and instructions for user choice of 2x2 or 3x3
 if(board == 0){
-	two.style.display = "block";
-    instwo.style.display = "block";
+	two.style.display = "inline-block";
+    instwo.style.display = "inline-block";
     three.style.display = "none";
     insthree.style.display = "none";
 }else if(board == 1){
 	two.style.display = "none";
     instwo.style.display = "none";
-    three.style.display = "block";
-    insthree.style.display = "block";
+    three.style.display = "inline-block";
+    insthree.style.display = "inline-block";
 }
 
 //displaying hint button for user choice of with/without hint
