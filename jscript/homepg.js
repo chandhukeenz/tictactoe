@@ -70,7 +70,7 @@ window.onload=function(){
     this.classList.add("active")
 	y = this.textContent;
 	//play stores the choice of player ai/crew/timer
-	y === " AN AI!" ? play = 0:y === " YOUR CREW MEMBERS!" ? play = 1:play = 2;	
+	y === " AN AI!" ? play = 0:y === " YOUR CREW!" ? play = 1:play = 2;	
     sessionStorage.setItem("play", play);
 	//calls display
 	display(play);
