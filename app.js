@@ -32,14 +32,17 @@ io.sockets.on("connection",function(socket){
 	console.log("Connected:  %s sockets connected",connections.length);
 	
 	//disconnect
-	connections.splice(connections.indexOf(socket),1);
-	console.log("Disconnected: %s  sockets connected",connections.length);
+	socket.on('disconnect',function(){
+		connections.splice(connections.indexOf(socket),1);
+	    console.log("Disconnected: %s  sockets connected",connections.length);
+	});
+	
 });
 
 //server started at port 3000
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 server.listen(port,function(){
-	console.log("tictactoe Server started! at 3000");
+	console.log("tictactoe Server started! at 8080");
 });
 
   
