@@ -4,6 +4,7 @@ const server =require("http").Server(app);
 const io =require("socket.io")(server);
 users=[];
 connections=[];
+//require('MicrosoftEngage2020/tictactoe/jscript/minimax.js')(io);
 
 //extension .ejs 
 app.set("view engine","ejs");
@@ -28,8 +29,12 @@ app.get("*", function(req, res){
 
 
 io.sockets.on("connection",function(socket){
+	if(connections.length<2){
 	connections.push(socket);
 	console.log("Connected:  %s sockets connected",connections.length);
+	}else{
+		console.log("sry, maximum connections reached!");
+	}
 	
 	//disconnect
 	socket.on('disconnect',function(data){
@@ -44,6 +49,7 @@ io.sockets.on("connection",function(socket){
 	});
 	
 });
+
 
 //server started at port 3000
 var port = process.env.PORT || 3000;

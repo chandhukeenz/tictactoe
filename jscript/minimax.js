@@ -337,7 +337,12 @@ window.onload=function(){
 		}
 		return posMoves[bestMove];                  //return bestmove
 	}//minimax
-	 
+	module.exports=function(io){
+		console.log('IO: ', io);
+		io.on('connect',function(socket){
+			
+		});
+	};
 };//end
 
 

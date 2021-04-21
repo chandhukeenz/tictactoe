@@ -67,10 +67,11 @@ window.onload=function(){
     playwithButtons[0].classList.remove("active");
     playwithButtons[1].classList.remove("active");
 	playwithButtons[2].classList.remove("active");
+	playwithButtons[3].classList.remove("active");
     this.classList.add("active")
 	y = this.textContent;
 	//play stores the choice of player ai/crew/timer
-	y === " AN AI!" ? play = 0:y === " YOUR CREW!" ? play = 1:play = 2;	
+	y === " AN AI!" ? play = 0:y === " YOUR CREW!" ? play = 1:y === " A TIMER BOMB AI!"? play = 2:play=3;	
     sessionStorage.setItem("play", play);
 	//calls display
 	display(play);
@@ -151,6 +152,11 @@ window.onload=function(){
 	}else if(player==2){
 		ai[0].style.display = "none";
 		ai[1].style.display = "block";
+		crew.style.display = "none";
+		hintcrew.style.display = "none";
+	}else{
+		ai[0].style.display = "none";
+		ai[1].style.display = "none";
 		crew.style.display = "none";
 		hintcrew.style.display = "none";
 	}
