@@ -32,17 +32,23 @@ io.sockets.on("connection",function(socket){
 	console.log("Connected:  %s sockets connected",connections.length);
 	
 	//disconnect
-	socket.on('disconnect',function(){
+	socket.on('disconnect',function(data){
 		connections.splice(connections.indexOf(socket),1);
 	    console.log("Disconnected: %s  sockets connected",connections.length);
+	});
+	
+	//send msg
+	socket.on('send msg',function(data){
+		console.log(data);
+		io.sockets.emit('new msg',{msg:data});
 	});
 	
 });
 
 //server started at port 3000
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 server.listen(port,function(){
-	console.log("tictactoe Server started! at 8080");
+	console.log("tictactoe Server started! at 3000");
 });
 
   

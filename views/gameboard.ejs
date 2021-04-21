@@ -74,6 +74,15 @@
 	<script type="text/javascript" src="/3player.js"></script>
 	<script>$(function(){
 			var socket =io.connect();
+			var $gamebox=$('#tic2');
+			//var $box=boxClick.num;
+			//console.log($box);
+			document.getElementById("tic2").addEventListener("click",function(e){
+				numId=e.target.id;
+				var box = numId.slice(-1);
+				console.log(box);
+				socket.emit('send msg',box);
+			});
 		});</script>
 </body>
 </html>

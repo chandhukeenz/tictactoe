@@ -1,11 +1,17 @@
-window.onload= function(){
+window.onload=function(){
 	var difficulty = [20,8,4,0];         //measure of randomness in minimax output acc. to user difficulty mode
 	var num;                             //box number
 	var box;                             //stores element by id
 	var ctx;                             //stores 2d context of box
 	var turn = 1;                        //game all players turn count
-	var filled;                          //array tells true/false based on if the canvas is filled/not
-	var symbol;                          //array stores players symbol (x,o,t) of all canvas
+	var filled=[false,false,false,
+			   false,false,false,
+			   false,false,false]; 
+//array tells true/false based on if the canvas is filled/not
+    console.log(filled[5]);
+	var symbol=['','','',
+				'','','',
+			    '','',''];                          //array stores players symbol (x,o,t) of all canvas
 	var winner;                          //stores winning positions
 	var gameover = false;                //true/false based on game on/off
 	var human = 'X';                     //symbol of human player
@@ -13,12 +19,12 @@ window.onload= function(){
 	var result = {};
 	
 	//initialising all initial empty boxes with filled as false & symbol as ''
-	filled = new Array();
+	/*filled = new Array();
 	symbol = new Array();
 	for(var i = 0;i < 9;i++){
 		filled[i] = false;
 		symbol[i] = '';
-	}
+	}*/
 	
 	//stores all winning positions
 	winner = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
@@ -55,7 +61,6 @@ window.onload= function(){
 			}
 		}, 2000);
 	}//STARTTIME
-	
 	//IF FIRSTPLAYER IS AI CALL PLAYAI FUNCTION
 	if(firstplayer == 0 && (play == 0||play == 2)){
 		//calls playAI
@@ -119,6 +124,8 @@ window.onload= function(){
 		ctx = box.getContext("2d");
 		//get the box num from the id and store in num
 		num = numId.slice(-1);
+		console.log(num);
+		console.log(filled[5]);
 		if(filled[num-1] === false){                                        //check box is empty
 			if(gameover === false){                                         //check gameover
 				if((firstplayer === 0 && turn%2 == 0 && (play === 0||play == 2))||(firstplayer === 1 && turn%2 !== 0 && (play===0||play === 2))||(play === 1 && turn%2 !== 0)){                     //check for x player turn 
@@ -328,7 +335,6 @@ window.onload= function(){
 				}
 			}
 		}
-		console.log(posMoves);
 		return posMoves[bestMove];                  //return bestmove
 	}//minimax
 	 
